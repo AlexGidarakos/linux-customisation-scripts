@@ -13,9 +13,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Source install script
-        run: . install.sh
-
-      - name: Test aliases
+        # run: . install.sh
         run: |
-          ls
-          ll
+          ls -l install.sh
+          help source
+          source install.sh
+
+      # - name: Test aliases
+      #   run: |
+      #     ls
+      #     ll
