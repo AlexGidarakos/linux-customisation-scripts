@@ -17,5 +17,9 @@ jobs:
 
       - name: Test aliases
         run: |
+          pwd
+          ls -al
+          ls -al /github/home
+          ls -al /__w/linux-qol-tweaks/linux-qol-tweaks
           ls ~
           ll ~
