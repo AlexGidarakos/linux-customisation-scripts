@@ -16,17 +16,17 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Source install script
-        # run: . install.sh
-        run: |
-          ls -l install.sh
-          echo $SHELL
-          echo $0
-          echo $PATH
-          cat /etc/passwd | grep root
-          #help source
-          #source install.sh
+        run: . install.sh
+        # run: |
+        #   ls -l install.sh
+        #   echo $SHELL
+        #   echo $0
+        #   echo $PATH
+        #   cat /etc/passwd | grep root
+        #   #help source
+        #   #source install.sh
 
-      # - name: Test aliases
-      #   run: |
-      #     ls
-      #     ll
+      - name: Test aliases
+        run: |
+          ls
+          ll
