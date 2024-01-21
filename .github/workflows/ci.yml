@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Source install script
-        run: . install.sh
+      #- name: Source install script
+      #  run: . install.sh
 
       - name: Test aliases
         run: |
