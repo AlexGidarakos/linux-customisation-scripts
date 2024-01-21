@@ -16,8 +16,10 @@ jobs:
         # run: . install.sh
         run: |
           ls -l install.sh
-          help source
-          source install.sh
+          echo $SHELL
+          echo $PATH
+          #help source
+          #source install.sh
 
       # - name: Test aliases
       #   run: |
