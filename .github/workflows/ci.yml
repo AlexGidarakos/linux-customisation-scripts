@@ -9,6 +9,9 @@ jobs:
       matrix:
         container-os: ["debian:12", "ubuntu:22.04"]
     container: public.ecr.aws/docker/library/${{ matrix.container-os }}
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
 
