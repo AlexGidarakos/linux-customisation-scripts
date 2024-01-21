@@ -19,7 +19,7 @@ jobs:
         run: apt-get update && apt-get install -y wget
 
       - name: Run install script
-        run: install.sh
+        run: ./install.sh
 
       - name: Test aliases
         run: |
