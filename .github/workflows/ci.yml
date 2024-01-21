@@ -12,14 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      #- name: Source install script
-      #  run: . install.sh
+      - name: Source install script
+        run: . install.sh
 
       - name: Test aliases
         run: |
-          pwd
-          ls -al
-          ls -al /github/home
-          ls -al /__w/linux-qol-tweaks/linux-qol-tweaks
-          ls ~
-          ll ~
+          ls
+          ll
