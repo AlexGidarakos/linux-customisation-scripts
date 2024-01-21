@@ -17,7 +17,9 @@ jobs:
         run: |
           ls -l install.sh
           echo $SHELL
+          echo $0
           echo $PATH
+          cat /etc/passwd | grep root
           #help source
           #source install.sh
 
