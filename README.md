@@ -1,2 +1,2 @@
-# linux-customisation-scripts
-A collection of scripts to apply QoL customisations I like to have on a fresh Linux install
+# linux-qol-tweaks
+Apply QoL tweaks on a fresh Linux installation.
