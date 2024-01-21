@@ -5,13 +5,17 @@ on: [push, workflow_dispatch]
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-os: [debian:12, ubuntu:22.04]
+    container: public.ecr.aws/docker/library/${{ matrix.container-os }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Source install script
+        run: . install.sh
 
-      - name: Run a multi-line script
+      - name: Test aliases
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          ls ~
+          ll ~
