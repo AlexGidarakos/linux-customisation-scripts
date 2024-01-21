@@ -16,13 +16,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: apt-get update && apt-get install -y wget && echo $0
+        run: apt-get update && apt-get install -y wget
 
-      - name: Source install script
-        run: . install.sh && echo $0
+      - name: Run install script
+        run: install.sh
 
       - name: Test aliases
         run: |
-          echo $0
+          source ~/.bash_aliases
+          alias
           ls
           ll
