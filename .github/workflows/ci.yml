@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        container-os: [debian:12, ubuntu:22.04]
+        container-os: ["debian:12", "ubuntu:22.04"]
     container: public.ecr.aws/docker/library/${{ matrix.container-os }}
     steps:
       - uses: actions/checkout@v4
