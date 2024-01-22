@@ -11,7 +11,7 @@ A collection of quality-of-life tweaks that I like to install in the first insta
 ## Installation
 ```
 wget https://raw.githubusercontent.com/AlexGidarakos/linux-qol-tweaks/main/install.sh
-
+chmod u+x install.sh
 ./install.sh
 
 # Or use the following if you want aliases to take immediate effect:
