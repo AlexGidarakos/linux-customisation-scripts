@@ -23,19 +23,27 @@
 # Copyright 2024, Alexandros Gidarakos.
 # SPDX-License-Identifier: MIT
 
-readonly GH_URL_PART_1='https://raw.githubusercontent.com/AlexGidarakos'
-readonly GH_URL_PART_2='linux-qol-tweaks'
+readonly GH_1='https://raw.githubusercontent.com'
+readonly GH_2='AlexGidarakos'
+readonly GH_3='linux-qol-tweaks'
+readonly GH_4='main'
 
 install_bash_aliases() {
-  local GH_URL_PART_3='main/files/.bash_aliases'
-  local GH_URL="${GH_URL_PART_1}/${GH_URL_PART_2}/${GH_URL_PART_3}"
-  local temp_file
+  local GH_5='files/.bash_aliases'
+  local GH_URL="${GH_1}/${GH_2}/${GH_3}/${GH_4}/${GH_5}"
+  local target
+  local downloaded
+  target=~/.bash_aliases
 
-  temp_file="/tmp/bash_aliases_${RANDOM}"
-  wget -O "${temp_file}" "${GH_URL}"
-  cat "${temp_file}" >> ~/.bash_aliases
-  rm "${temp_file}"
-  source ~/.bash_aliases
+  if [[ -f "${GH_5}" ]]; then
+    cp "${GH_5}" "${target}"
+  else
+    downloaded="/tmp/${RANDOM}"
+    wget -O "${downloaded}" "${GH_URL}"
+    mv "${downloaded}" "${target}"
+  fi
+    
+  source "${target}"
 }
 
 main() {
