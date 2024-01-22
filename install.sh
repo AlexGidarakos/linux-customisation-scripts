@@ -71,7 +71,9 @@ tweak_path() {
     echo -e "${NEW_PATH_CMD}" >> ~/.profile
   fi
 
-  source ~/.profile
+  if [[ -f ~/.profile ]]; then
+    source ~/.profile
+  fi
 }
 
 main() {
