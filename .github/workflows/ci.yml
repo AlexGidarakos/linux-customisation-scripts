@@ -5,14 +5,14 @@ on: [push, workflow_dispatch]
 defaults:
   run:
     shell: bash
-  runs-on: ubuntu-latest
-  strategy:
-    matrix:
-      container-os: ["debian:12", "ubuntu:22.04"]
-  container: public.ecr.aws/docker/library/${{ matrix.container-os }}
 
 jobs:
   test-without-downloads:
+    runs-on: ubuntu-latest
+    strategy:
+    matrix:
+      container-os: ["debian:12", "ubuntu:22.04"]
+    container: public.ecr.aws/docker/library/${{ matrix.container-os }}
     steps:
       - uses: actions/checkout@v4
 
@@ -31,6 +31,11 @@ jobs:
           grep -E "history-search-backward" ~/.inputrc
 
   test-with-downloads:
+    runs-on: ubuntu-latest
+    strategy:
+    matrix:
+      container-os: ["debian:12", "ubuntu:22.04"]
+    container: public.ecr.aws/docker/library/${{ matrix.container-os }}
     steps:
       - uses: actions/checkout@v4
 
