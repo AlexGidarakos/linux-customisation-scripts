@@ -27,16 +27,33 @@ readonly GH_1='https://raw.githubusercontent.com'
 readonly GH_2='AlexGidarakos'
 readonly GH_3='linux-qol-tweaks'
 readonly GH_4='main'
-readonly GH_BASE="${GH_1}/${GH_2}/${GH_3}/${GH_4}"
+readonly GH_5='files'
+readonly GH_BASE="${GH_1}/${GH_2}/${GH_3}/${GH_4}/${GH_5}"
 
 install_bash_aliases() {
-  local -r GH_FILE='files/.bash_aliases'
+  local -r GH_FILE='.bash_aliases'
   local -r GH_URL="${GH_BASE}/${GH_FILE}"
-  local -r TARGET=~/.bash_aliases
+  local -r TARGET=~/"${GH_FILE}"
   local -r DOWNLOADED="/tmp/${RANDOM}"
 
-  if [[ -f "${GH_FILE}" ]]; then
-    cp "${GH_FILE}" "${TARGET}"
+  if [[ -f "${GH_5}/${GH_FILE}" ]]; then
+    cp "${GH_5}/${GH_FILE}" "${TARGET}"
+  else
+    wget -O "${DOWNLOADED}" "${GH_URL}"
+    mv "${DOWNLOADED}" "${TARGET}"
+  fi
+
+  source "${TARGET}"
+}
+
+install_nanorc() {
+  local -r GH_FILE='.nanorc'
+  local -r GH_URL="${GH_BASE}/${GH_FILE}"
+  local -r TARGET=~/"${GH_FILE}"
+  local -r DOWNLOADED="/tmp/${RANDOM}"
+
+  if [[ -f "${GH_5}/${GH_FILE}" ]]; then
+    cp "${GH_5}/${GH_FILE}" "${TARGET}"
   else
     wget -O "${DOWNLOADED}" "${GH_URL}"
     mv "${DOWNLOADED}" "${TARGET}"
@@ -47,6 +64,7 @@ install_bash_aliases() {
 
 main() {
   install_bash_aliases
+  install_nanorc
 }
 
 main "$@"
