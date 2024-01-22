@@ -25,8 +25,7 @@ jobs:
         run: |
           source ~/.bash_aliases
           alias
+          type ls
+          type ll
           ls
-          unalias ls
-          ls
-          alias
-          #ll
+          ll
