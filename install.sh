@@ -53,9 +53,14 @@ tweak_nanorc() {
   install_file .nanorc
 }
 
+tweak_inputrc() {
+  install_file .inputrc
+}
+
 main() {
   tweak_bash_aliases
   tweak_nanorc
+  tweak_inputrc
 }
 
 main "$@"

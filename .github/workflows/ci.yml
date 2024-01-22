@@ -2,16 +2,17 @@ name: ci
 
 on: [push, workflow_dispatch]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
-  test:
+  test-without-downloads:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         container-os: ["debian:12", "ubuntu:22.04"]
     container: public.ecr.aws/docker/library/${{ matrix.container-os }}
-    defaults:
-      run:
-        shell: bash
     steps:
       - uses: actions/checkout@v4
 
@@ -27,15 +28,29 @@ jobs:
           source ~/.bash_aliases
           ll
           grep -E "^set constantshow" ~/.nanorc
+          grep -E "history-search-backward" ~/.inputrc
+
+  test-with-downloads:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-os: ["debian:12", "ubuntu:22.04"]
+    container: public.ecr.aws/docker/library/${{ matrix.container-os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: apt-get update && apt-get install -y wget
 
       - name: Run install script with downloads
         run:  |
-          rm ~/.bash_aliases files/.bash_aliases ~/.nanorc files/.nanorc
+          rm -r files
           ./install.sh
 
-      - name: Re-test tweaks
+      - name: Test tweaks
         run: |
           shopt -s expand_aliases
           source ~/.bash_aliases
           ll
           grep -E "^set constantshow" ~/.nanorc
+          grep -E "history-search-backward" ~/.inputrc
