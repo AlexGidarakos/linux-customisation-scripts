@@ -26,9 +26,11 @@ jobs:
         run: |
           shopt -s expand_aliases
           source ~/.bash_aliases
+          source ~/.profile
           ll
           grep -E "^set constantshow" ~/.nanorc
           grep -E "history-search-backward" ~/.inputrc
+          echo ${PATH} | grep "/usr/local/sbin" 
 
   test-with-downloads:
     runs-on: ubuntu-latest

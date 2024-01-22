@@ -7,6 +7,7 @@ A collection of quality-of-life tweaks that I like to install in the first insta
 * Bash: alias "ll" to "ls -al"
 * Nano: display the cursor position in the status bar
 * Bash: improved Readline history search with up/down arrow keys
+* Bash: improved PATH for non-root user
 
 ## Dependencies
 * Bash
