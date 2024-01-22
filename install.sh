@@ -67,7 +67,7 @@ tweak_path() {
     content="$(cat ~/.profile)"
   fi
 
-  if ! echo "${content}${PATH}" | grep "/usr/local/sbin"; then
+  if ! echo "${content}${PATH}" | grep "/usr/local/sbin" > /dev/null; then
     echo -e "${NEW_PATH_CMD}" >> ~/.profile
   fi
 
