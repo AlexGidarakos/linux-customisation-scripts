@@ -21,19 +21,21 @@ jobs:
       - name: Run install script without downloads
         run: ./install.sh
 
-      - name: Test aliases
+      - name: Test tweaks
         run: |
           shopt -s expand_aliases
           source ~/.bash_aliases
           ll
+          grep -E "^set constantshow" ~/.nanorc
 
       - name: Run install script with downloads
         run:  |
-          rm files/.bash_aliases
+          rm ~/.bash_aliases files/.bash_aliases ~/.nanorc files/.nanorc
           ./install.sh
 
-      - name: Re-test aliases
+      - name: Re-test tweaks
         run: |
           shopt -s expand_aliases
           source ~/.bash_aliases
           ll
+          grep -E "^set constantshow" ~/.nanorc
