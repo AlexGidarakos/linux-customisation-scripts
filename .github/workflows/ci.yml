@@ -18,11 +18,23 @@ jobs:
       - name: Install dependencies
         run: apt-get update && apt-get install -y wget
 
-      - name: Run install script
+      - name: Run install script without downloads
         run: ./install.sh
 
       - name: Test aliases
         run: |
+          shopt -s expand_aliases
+          source ~/.bash_aliases
+          ll
+
+      - name: Run install script with downloads
+        run:  |
+          rm files/.bash_aliases
+          ./install.sh
+
+      - name: Re-test aliases
+        run: |
+          unalias ls ll
           shopt -s expand_aliases
           source ~/.bash_aliases
           ll
