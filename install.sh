@@ -27,23 +27,22 @@ readonly GH_1='https://raw.githubusercontent.com'
 readonly GH_2='AlexGidarakos'
 readonly GH_3='linux-qol-tweaks'
 readonly GH_4='main'
+readonly GH_BASE="${GH_1}/${GH_2}/${GH_3}/${GH_4}"
 
 install_bash_aliases() {
-  local GH_5='files/.bash_aliases'
-  local GH_URL="${GH_1}/${GH_2}/${GH_3}/${GH_4}/${GH_5}"
-  local target
-  local downloaded
-  target=~/.bash_aliases
+  local -r GH_FILE='files/.bash_aliases'
+  local -r GH_URL="${GH_BASE}/${GH_FILE}"
+  local -r TARGET=~/.bash_aliases
+  local -r DOWNLOADED="/tmp/${RANDOM}"
 
-  if [[ -f "${GH_5}" ]]; then
-    cp "${GH_5}" "${target}"
+  if [[ -f "${GH_FILE}" ]]; then
+    cp "${GH_FILE}" "${TARGET}"
   else
-    downloaded="/tmp/${RANDOM}"
-    wget -O "${downloaded}" "${GH_URL}"
-    mv "${downloaded}" "${target}"
+    wget -O "${DOWNLOADED}" "${GH_URL}"
+    mv "${DOWNLOADED}" "${TARGET}"
   fi
-    
-  source "${target}"
+
+  source "${TARGET}"
 }
 
 main() {
