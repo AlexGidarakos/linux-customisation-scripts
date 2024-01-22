@@ -26,4 +26,7 @@ jobs:
           source ~/.bash_aliases
           alias
           ls
-          ll
+          unalias ls
+          ls
+          alias
+          #ll
