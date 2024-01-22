@@ -26,7 +26,7 @@ jobs:
         run: |
           shopt -s expand_aliases
           source ~/.bash_aliases
-          source ~/.profile
+          if [[ -f ~/.profile ]]; then source ~/.profile; fi
           ll
           grep -E "^set constantshow" ~/.nanorc
           grep -E "history-search-backward" ~/.inputrc
