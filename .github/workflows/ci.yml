@@ -34,7 +34,6 @@ jobs:
 
       - name: Re-test aliases
         run: |
-          unalias ls ll
           shopt -s expand_aliases
           source ~/.bash_aliases
           ll
