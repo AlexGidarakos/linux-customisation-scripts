@@ -61,8 +61,13 @@ tweak_path() {
   local -r NEW_PATH_CMD_1='\nPATH="${PATH:+${PATH}:}'
   local -r NEW_PATH_CMD_2='/usr/local/sbin:/usr/sbin:/sbin"'
   local -r NEW_PATH_CMD="${NEW_PATH_CMD_1}${NEW_PATH_CMD_2}"
+  local content
 
-  if ! { cat ~/.profile; echo ${PATH}; } | grep "/usr/local/sbin" ; then
+  if [[ -f ~/.profile ]]; then
+    content="$(cat ~/.profile)"
+  fi
+
+  if ! echo "${content}${PATH}" | grep "/usr/local/sbin"; then
     echo -e "${NEW_PATH_CMD}" >> ~/.profile
   fi
 
