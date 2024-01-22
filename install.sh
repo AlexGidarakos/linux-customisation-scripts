@@ -38,7 +38,6 @@ install_bash_aliases() {
   if [[ -f "${GH_FILE}" ]]; then
     cp "${GH_FILE}" "${TARGET}"
   else
-    DOWNLOADED="/tmp/${RANDOM}"
     wget -O "${DOWNLOADED}" "${GH_URL}"
     mv "${DOWNLOADED}" "${TARGET}"
   fi
