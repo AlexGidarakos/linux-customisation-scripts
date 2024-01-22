@@ -44,10 +44,7 @@ jobs:
 
       - name: Run install script with downloads
         run:  |
-          rm \
-            ~/.bash_aliases files/.bash_aliases \
-            ~/.nanorc files/.nanorc \
-            ~/.inputrc files/.inputrc
+          rm -r files
           ./install.sh
 
       - name: Test tweaks
