@@ -1,0 +1,28 @@
+name: ci
+
+on: [push, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-os: ["debian:12", "ubuntu:22.04"]
+    container: public.ecr.aws/docker/library/${{ matrix.container-os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: apt-get update && apt-get install -y wget
+
+      - name: Run install script
+        run: ./install.sh
+
+      - name: Test aliases
+        run: |
+          shopt -s expand_aliases
+          source ~/.bash_aliases
+          ll

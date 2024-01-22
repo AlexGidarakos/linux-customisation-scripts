@@ -17,9 +17,8 @@
 # Copyright 2024, Alexandros Gidarakos.
 # SPDX-License-Identifier: MIT
 
-  readonly GH_URL_PART_1='https://raw.githubusercontent.com/AlexGidarakos'
-  readonly GH_URL_PART_2='linux-qol-tweaks'
-
+readonly GH_URL_PART_1='https://raw.githubusercontent.com/AlexGidarakos'
+readonly GH_URL_PART_2='linux-qol-tweaks'
 
 install_bash_aliases() {
   local GH_URL_PART_3='main/files/.bash_aliases'
