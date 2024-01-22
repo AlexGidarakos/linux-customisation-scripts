@@ -1,13 +1,12 @@
 # linux-qol-tweaks
-> Apply QoL tweaks on a fresh Linux installation.
 
-A collection of quality-of-life tweaks that I like to install in the first instance on a fresh Linux installation, be it bare-metal, VM or container.
+A collection of quality-of-life tweaks that I like to apply as soon as possible on a fresh Linux installation, be it bare-metal, VM or container.
 
 * Bash: alias "ls" to "ls --color=auto"
 * Bash: alias "ll" to "ls -al"
 * Nano: display the cursor position in the status bar
-* Bash: improved Readline history search with up/down arrow keys
-* Bash: improved PATH for non-root user
+* Shell: improved Readline history search with up/down arrow keys
+* Shell: improved PATH for non-root user
 
 ## Dependencies
 * Bash
