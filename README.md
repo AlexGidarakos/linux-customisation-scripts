@@ -3,6 +3,11 @@
 
 A collection of quality-of-life tweaks that I like to install in the first instance on a fresh Linux installation, be it bare-metal, VM or container.
 
+* Bash: alias "ls" to "ls --color=auto"
+* Bash: alias "ll" to "ls -al"
+* Nano: display the cursor position in the status bar
+* Bash: improved Readline history search with up/down arrow keys
+
 ## Dependencies
 * Bash
 * GNU Coreutils
