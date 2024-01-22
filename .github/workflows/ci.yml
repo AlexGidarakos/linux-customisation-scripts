@@ -22,4 +22,7 @@ jobs:
         run: ./install.sh
 
       - name: Test aliases
-        run: source ~/.bash_aliases && alias && ll
+        run: |
+          shopt -s expand_aliases
+          source ~/.bash_aliases
+          ll
