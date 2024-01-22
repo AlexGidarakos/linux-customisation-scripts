@@ -57,10 +57,30 @@ tweak_inputrc() {
   install_file .inputrc
 }
 
+tweak_path() {
+  local -r NEW_PATH_CMD_1='\nPATH="${PATH:+${PATH}:}'
+  local -r NEW_PATH_CMD_2='/usr/local/sbin:/usr/sbin:/sbin"'
+  local -r NEW_PATH_CMD="${NEW_PATH_CMD_1}${NEW_PATH_CMD_2}"
+  local content
+
+  if [[ -f ~/.profile ]]; then
+    content="$(cat ~/.profile)"
+  fi
+
+  if ! echo "${content}${PATH}" | grep "/usr/local/sbin"; then
+    echo -e "${NEW_PATH_CMD}" >> ~/.profile
+  fi
+
+  if [[ -f ~/.profile ]]; then
+    source ~/.profile
+  fi
+}
+
 main() {
   tweak_bash_aliases
   tweak_nanorc
   tweak_inputrc
+  tweak_path
 }
 
 main "$@"
