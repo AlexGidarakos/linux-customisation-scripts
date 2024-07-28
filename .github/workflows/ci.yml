@@ -1,28 +1,40 @@
-name: ci
+name: CI
+run-name: CI
 
-on: [push, workflow_dispatch]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
 
 defaults:
   run:
     shell: bash
 
 jobs:
-  test-without-downloads:
+  ci:
+    name: CI
     runs-on: ubuntu-latest
     strategy:
       matrix:
         container-os: ["debian:12", "ubuntu:22.04"]
+        with-downloads: ["true", "false"]
     container: public.ecr.aws/docker/library/${{ matrix.container-os }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: apt-get update && apt-get install -y wget
 
-      - name: Run install script without downloads
+      - name: Delete Files Directory
+        if: ${{ matrix.with-downloads == 'true' }}
+        run: rm -r files
+
+      - name: Run Install Script
         run: ./install.sh
 
-      - name: Test tweaks
+      - name: Test Tweaks
         run: |
           shopt -s expand_aliases
           source ~/.bash_aliases
@@ -31,28 +43,3 @@ jobs:
           grep -E "^set constantshow" ~/.nanorc
           grep -E "history-search-backward" ~/.inputrc
           echo ${PATH} | grep "/usr/local/sbin" 
-
-  test-with-downloads:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        container-os: ["debian:12", "ubuntu:22.04"]
-    container: public.ecr.aws/docker/library/${{ matrix.container-os }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: apt-get update && apt-get install -y wget
-
-      - name: Run install script with downloads
-        run:  |
-          rm -r files
-          ./install.sh
-
-      - name: Test tweaks
-        run: |
-          shopt -s expand_aliases
-          source ~/.bash_aliases
-          ll
-          grep -E "^set constantshow" ~/.nanorc
-          grep -E "history-search-backward" ~/.inputrc
