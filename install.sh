@@ -36,30 +36,11 @@ install_file() {
   local -r TARGET=~/"${GH_FILE}"
   local -r DOWNLOADED="$(mktemp)"
 
-  echo "DEBUG: GH_FILE is ${GH_FILE}"
-  echo "DEBUG: GH_URL is ${GH_URL}"
-  echo "DEBUG: TARGET is ${TARGET}"
-  echo "DEBUG: DOWNLOADED is ${DOWNLOADED}"
-  
   if [[ -f "${GH_5}/${GH_FILE}" ]]; then
-
-    echo "DEBUG: Found ${GH_5}/${GH_FILE}. Copying to ${TARGET}"
-
     cp "${GH_5}/${GH_FILE}" "${TARGET}"
-
-    ls -l ${GH_5}/${GH_FILE}
-    ls -l "${TARGET}"
   else
-
-    echo "DEBUG: ${GH_5}/${GH_FILE} not found, downloading from repo"
-
     wget -O "${DOWNLOADED}" "${GH_URL}"
-
-    ls -l "${DOWNLOADED}"
-
     mv "${DOWNLOADED}" "${TARGET}"
-
-    ls -l "${TARGET}"
   fi
 }
 
@@ -71,18 +52,13 @@ tweak_bash_aliases() {
 tweak_bash_prompt() {
   local -r BASHRC_PART=".bashrc.part"
 
-  echo "DEBUG: Checking for Git"
-  which git
-
   if ! which git > /dev/null; then
     return 0
   fi
 
-  echo "DEBUG: Git found"
-
   install_file "$BASHRC_PART"
-  cat "$BASHRC_PART" >> ~/.bashrc
-  rm "$BASHRC_PART"
+  cat "~/$BASHRC_PART" >> ~/.bashrc
+  rm "~/$BASHRC_PART"
   source ~/.bashrc
 }
 
