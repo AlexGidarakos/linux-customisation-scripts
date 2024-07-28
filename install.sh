@@ -43,15 +43,23 @@ install_file() {
   
   if [[ -f "${GH_5}/${GH_FILE}" ]]; then
 
-    echo "DEBUG: Found ${GH_5}/${GH_FILE}"
+    echo "DEBUG: Found ${GH_5}/${GH_FILE}. Copying to ${TARGET}"
 
     cp "${GH_5}/${GH_FILE}" "${TARGET}"
+
+    ls -l ${GH_5}/${GH_FILE}
+    ls -l "${TARGET}"
   else
 
     echo "DEBUG: ${GH_5}/${GH_FILE} not found, downloading from repo"
 
     wget -O "${DOWNLOADED}" "${GH_URL}"
+
+    ls -l "${DOWNLOADED}"
+
     mv "${DOWNLOADED}" "${TARGET}"
+
+    ls -l "${TARGET}"
   fi
 }
 
