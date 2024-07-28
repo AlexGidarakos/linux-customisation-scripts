@@ -52,9 +52,14 @@ tweak_bash_aliases() {
 tweak_bash_prompt() {
   local -r BASHRC_PART=".bashrc.part"
 
+  echo "DEBUG: Checking for Git"
+  which git
+
   if ! which git > /dev/null; then
     return 0
   fi
+
+  echo "DEBUG: Git found"
 
   install_file "$BASHRC_PART"
   cat "$BASHRC_PART" >> .bashrc
