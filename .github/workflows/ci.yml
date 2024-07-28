@@ -37,10 +37,18 @@ jobs:
       - name: Test Tweaks
         run: |
           shopt -s expand_aliases
+          [ $? -ne 0 ] && echo "Checkpoint 1 error" && exit 1
           source ~/.bash_aliases
+          [ $? -ne 0 ] && echo "Checkpoint 2 error" && exit 1
           grep -E "export PS1.+parse_git_branch" ~/.bashrc
+          [ $? -ne 0 ] && echo "Checkpoint 3 error" && exit 1
           if [[ -f ~/.profile ]]; then source ~/.profile; fi
+          [ $? -ne 0 ] && echo "Checkpoint 4 error" && exit 1
           ll
+          [ $? -ne 0 ] && echo "Checkpoint 5 error" && exit 1
           grep -E "^set constantshow" ~/.nanorc
+          [ $? -ne 0 ] && echo "Checkpoint 6 error" && exit 1
           grep -E "history-search-backward" ~/.inputrc
+          [ $? -ne 0 ] && echo "Checkpoint 7 error" && exit 1
           echo ${PATH} | grep "/usr/local/sbin" 
+          [ $? -ne 0 ] && echo "Checkpoint 8 error" && exit 1
