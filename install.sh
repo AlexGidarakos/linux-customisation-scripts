@@ -36,9 +36,20 @@ install_file() {
   local -r TARGET=~/"${GH_FILE}"
   local -r DOWNLOADED="$(mktemp)"
 
+  echo "DEBUG: GH_FILE is ${GH_FILE}"
+  echo "DEBUG: GH_URL is ${GH_URL}"
+  echo "DEBUG: TARGET is ${TARGET}"
+  echo "DEBUG: DOWNLOADED is ${DOWNLOADED}"
+  
   if [[ -f "${GH_5}/${GH_FILE}" ]]; then
+
+    echo "DEBUG: Found ${GH_5}/${GH_FILE}"
+
     cp "${GH_5}/${GH_FILE}" "${TARGET}"
   else
+
+    echo "DEBUG: ${GH_5}/${GH_FILE} not found, downloading from repo"
+
     wget -O "${DOWNLOADED}" "${GH_URL}"
     mv "${DOWNLOADED}" "${TARGET}"
   fi
@@ -62,7 +73,7 @@ tweak_bash_prompt() {
   echo "DEBUG: Git found"
 
   install_file "$BASHRC_PART"
-  cat "$BASHRC_PART" >> .bashrc
+  cat "$BASHRC_PART" >> ~/.bashrc
   rm "$BASHRC_PART"
   source ~/.bashrc
 }
