@@ -32,7 +32,7 @@ jobs:
         run: rm -r files
 
       - name: Run Install Script
-        run: ./install.sh
+        run: ./install.sh "${{ github.repository }}/${{ github.ref_name }}"
 
       - name: Test Tweaks
         run: |

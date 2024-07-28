@@ -24,20 +24,18 @@
 # SPDX-License-Identifier: MIT
 
 readonly GH_1='https://raw.githubusercontent.com'
-readonly GH_2='AlexGidarakos'
-readonly GH_3='linux-qol-tweaks'
-readonly GH_4='main'
-readonly GH_5='files'
-readonly GH_BASE="${GH_1}/${GH_2}/${GH_3}/${GH_4}/${GH_5}"
+readonly GH_2="${1}"
+readonly GH_3='files'
+readonly GH_BASE_URL="${GH_1}/${GH_2}/${GH_3}"
 
 install_file() {
   local -r GH_FILE="${1}"
-  local -r GH_URL="${GH_BASE}/${GH_FILE}"
+  local -r GH_URL="${GH_BASE_URL}/${GH_FILE}"
   local -r TARGET=~/"${GH_FILE}"
   local -r DOWNLOADED="$(mktemp)"
 
-  if [[ -f "${GH_5}/${GH_FILE}" ]]; then
-    cp "${GH_5}/${GH_FILE}" "${TARGET}"
+  if [[ -f "${GH_3}/${GH_FILE}" ]]; then
+    cp "${GH_3}/${GH_FILE}" "${TARGET}"
   else
     wget -O "${DOWNLOADED}" "${GH_URL}"
     mv "${DOWNLOADED}" "${TARGET}"
