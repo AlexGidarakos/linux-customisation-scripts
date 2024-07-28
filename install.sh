@@ -34,7 +34,7 @@ install_file() {
   local -r GH_FILE="${1}"
   local -r GH_URL="${GH_BASE}/${GH_FILE}"
   local -r TARGET=~/"${GH_FILE}"
-  local -r DOWNLOADED="/tmp/${RANDOM}"
+  local -r DOWNLOADED="$(mktemp)"
 
   if [[ -f "${GH_5}/${GH_FILE}" ]]; then
     cp "${GH_5}/${GH_FILE}" "${TARGET}"
@@ -47,6 +47,19 @@ install_file() {
 tweak_bash_aliases() {
   install_file .bash_aliases
   source ~/.bash_aliases
+}
+
+tweak_bash_prompt() {
+  local -r BASHRC_PART=".bashrc.part"
+
+  if ! which git > /dev/null; then
+    return 0
+  fi
+
+  install_file "$BASHRC_PART"
+  cat "$BASHRC_PART" >> .bashrc
+  rm "$BASHRC_PART"
+  source ~/.bashrc
 }
 
 tweak_nanorc() {
@@ -78,6 +91,7 @@ tweak_path() {
 
 main() {
   tweak_bash_aliases
+  tweak_bash_prompt
   tweak_nanorc
   tweak_inputrc
   tweak_path

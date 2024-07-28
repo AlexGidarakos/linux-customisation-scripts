@@ -38,6 +38,7 @@ jobs:
         run: |
           shopt -s expand_aliases
           source ~/.bash_aliases
+          grep -E "export PS1.+parse_git_branch" ~/.bashrc
           if [[ -f ~/.profile ]]; then source ~/.profile; fi
           ll
           grep -E "^set constantshow" ~/.nanorc
