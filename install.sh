@@ -57,12 +57,8 @@ tweak_bash_prompt() {
   fi
 
   install_file "${BASHRC_PART}"
-  pwd
-  ls -l ./"${BASHRC_PART}"
-  ls -l ~/"${BASHRC_PART}"
-  cp "${BASHRC_PART}" ~/
-  cat "~/${BASHRC_PART}" >> ~/.bashrc
-  rm "~/${BASHRC_PART}"
+  cat ~/"${BASHRC_PART}" >> ~/.bashrc
+  rm ~/"${BASHRC_PART}"
   source ~/.bashrc
 }
 
