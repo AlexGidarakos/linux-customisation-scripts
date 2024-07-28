@@ -50,15 +50,19 @@ tweak_bash_aliases() {
 }
 
 tweak_bash_prompt() {
-  local -r BASHRC_PART=".bashrc.part"
+  local -r BASHRC_PART='.bashrc.part'
 
   if ! which git > /dev/null; then
     return 0
   fi
 
-  install_file "$BASHRC_PART"
-  cat "~/$BASHRC_PART" >> ~/.bashrc
-  rm "~/$BASHRC_PART"
+  install_file "${BASHRC_PART}"
+  pwd
+  ls -l ./"${BASHRC_PART}"
+  ls -l ~/"${BASHRC_PART}"
+  cp "${BASHRC_PART}" ~/
+  cat "~/${BASHRC_PART}" >> ~/.bashrc
+  rm "~/${BASHRC_PART}"
   source ~/.bashrc
 }
 
