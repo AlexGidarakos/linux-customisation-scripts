@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         container-os: ["debian:12", "ubuntu:22.04"]
-        with-downloads: ["true", "false"]
+        with-downloads: ["with-downloads", "no-downloads"]
     container: public.ecr.aws/docker/library/${{ matrix.container-os }}
     steps:
       - name: Checkout Repository
@@ -28,7 +28,7 @@ jobs:
         run: apt-get update && apt-get install -y wget
 
       - name: Delete Files Directory
-        if: ${{ matrix.with-downloads == 'true' }}
+        if: ${{ matrix.with-downloads == 'with-downloads' }}
         run: rm -r files
 
       - name: Run Install Script
