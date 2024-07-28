@@ -13,6 +13,7 @@ A collection of quality-of-life tweaks that I like to apply as soon as possible 
 ## List of Tweaks
 * Bash: alias "ls" to "ls --color=auto"
 * Bash: alias "ll" to "ls -al"
+* Bash: enhanced prompt for Git [[1](https://code.mendhak.com/simple-bash-prompt-for-developers-ps1-git/)]
 * Nano: display the cursor position in the status bar
 * Shell: improved Readline history search with up/down arrow keys
 * Shell: improved PATH for non-root user
